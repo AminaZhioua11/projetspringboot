@@ -1,11 +1,6 @@
 package tn.esprit.aminazhioua4actuariat.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +9,7 @@ import tn.esprit.aminazhioua4actuariat.enums.CategorieVehicule;
 import tn.esprit.aminazhioua4actuariat.enums.StatutVehicule;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,9 +23,7 @@ public class Vehicule {
     private Long idVehicule;
 
     private String immatriculation;
-
     private String marque;
-
     private String modele;
 
     @Enumerated(EnumType.STRING)
@@ -39,4 +33,16 @@ public class Vehicule {
 
     @Enumerated(EnumType.STRING)
     private StatutVehicule statut;
+
+    @ManyToOne
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Maintenance> maintenances;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Equipement> equipements;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations;
 }

@@ -1,11 +1,6 @@
 package tn.esprit.aminazhioua4actuariat.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,9 +21,17 @@ public class Reservation {
     private Long idReservation;
 
     private LocalDate dateDebut;
-
     private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
+    @ManyToOne
+    private Client client;
+
+    @OneToOne
+    private Contrat contrat;
 }
