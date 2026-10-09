@@ -10,6 +10,7 @@ import tn.esprit.aminazhioua4actuariat.enums.StatutVehicule;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -38,11 +39,14 @@ public class Vehicule {
     private Agence agence;
 
     @OneToMany(mappedBy = "vehicule")
-    private List<Maintenance> maintenances;
+    private Set<Maintenance> maintenances;
+
 
     @OneToMany(mappedBy = "vehicule")
-    private List<Equipement> equipements;
+    private Set<Equipement> equipements;
+
 
     @OneToMany(mappedBy = "vehicule")
-    private List<Reservation> reservations;
+    private Set<Reservation> reservations;
+
 }
